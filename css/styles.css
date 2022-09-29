@@ -12,6 +12,7 @@
     --heder-border-color: #ececec;
     --icon-color: #afb1b8;
     --icon-bg-color: rgba(255, 255, 255, 0.1);
+    --anim-speed: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Загальні стилі */
@@ -109,7 +110,8 @@ body {
     margin-right: 50px;
 }
 .nav-menu .link {
-    display: inline-block;
+    position: relative;
+
     padding-bottom: 32px;
     padding-top: 32px;
 
@@ -118,6 +120,19 @@ body {
     font-size: 14px;
     line-height: 1.14;
     letter-spacing: 0.02em;
+
+    transition: color var(--anim-speed);
+}
+.nav-menu .link.current::after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    content: '';
+    width: calc(100% + 2px);
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--accent-color);
 }
 .nav-menu .link:hover,
 .nav-menu .link:focus,
@@ -144,6 +159,8 @@ body {
     font-size: 14px;
     line-height: 1.14;
     letter-spacing: 0.02em;
+
+    transition: color var(--anim-speed);
 }
 .head-contacts .icon {
     margin-right: 10px;
@@ -151,7 +168,10 @@ body {
 }
 
 /* Герой */
-.overlay {
+.hero {
+    padding-top: 200px;
+    padding-bottom: 200px;
+    text-align: center;
     max-width: 1600px;
     height: 600px;
     margin-left: auto;
@@ -162,11 +182,6 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-}
-.hero {
-    padding-top: 200px;
-    padding-bottom: 200px;
-    text-align: center;
 }
 .hero .title {
     margin-bottom: 30px;
@@ -199,6 +214,8 @@ body {
     line-height: 1.88;
     letter-spacing: 0.06em;
     align-items: center;
+
+    transition: background-color var(--anim-speed);
 }
 .hero .button:hover,
 .hero .button:focus {
@@ -256,7 +273,28 @@ body {
 .services-example .item {
     display: block;
 }
+.services-example .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    background: rgba(47, 48, 58, 0.8);
+}
+.services-example .wrapper {
+    position: relative;
+}
+.services-example-text {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: calc(16 / 14);
+    text-transform: uppercase;
+    color: var(--white-color);
+}
 /* Наша команда */
 .team {
     background-color: var(--light-bg-color);
@@ -313,6 +351,7 @@ body {
     color: var(--icon-color);
     background-color: transparent;
     border-radius: 50%;
+    transition: color var(--anim-speed), background-color var(--anim-speed);
 }
 .social-networks .link:hover,
 .social-networks .link:focus {
@@ -352,6 +391,7 @@ body {
     border: 1px solid var(--icon-color);
     border-radius: 4px;
     color: var(--icon-color);
+    transition: color var(--anim-speed), border-color var(--anim-speed);
 }
 .client .icon {
     fill: currentColor;
@@ -381,6 +421,7 @@ body {
     font-size: 14px;
     line-height: 1.5;
     opacity: 0.6;
+    transition: opacity var(--anim-speed);
 }
 .foot-contacts .link:hover,
 .foot-contacts .link:focus {
@@ -421,6 +462,7 @@ body {
     height: 44px;
     background-color: var(--icon-bg-color);
     border-radius: 50%;
+    transition: background-color var(--anim-speed);
 }
 .join-in-list .icon {
     fill: var(--white-color);
@@ -455,6 +497,9 @@ body {
     font-size: 16px;
     line-height: 1.62;
     letter-spacing: 0.03em;
+    color: var(--title-color);
+    transition: color var(--anim-speed), background-color var(--anim-speed),
+        box-shadow var(--anim-speed);
 }
 .filters-menu .all {
     padding: 6px 25px;
@@ -468,6 +513,7 @@ body {
         0px 2px 2px rgba(0, 0, 0, 0.12);
 }
 /* Список прикладів */
+
 .examples {
     display: flex;
     flex-wrap: wrap;
@@ -478,6 +524,7 @@ body {
 .examples .link {
     display: block;
     color: inherit;
+    transition: box-shadow var(--anim-speed);
 }
 .examples .link:hover,
 .examples .link:focus {
@@ -511,4 +558,88 @@ body {
     display: block;
     font-size: 16px;
     line-height: 1.88;
+}
+.examples .wrapper {
+    position: relative;
+    overflow: hidden;
+}
+.examples .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 24px;
+    padding-right: 24px;
+
+    transform: translateY(101%);
+    transition: transform var(--anim-speed);
+
+    background-color: rgba(33, 150, 243, 0.9);
+}
+.examples-text {
+    color: var(--white-color);
+    margin: 0;
+    font-size: 18px;
+    line-height: calc(28 / 18);
+}
+.examples .card:hover .overlay {
+    transform: translateX(0);
+}
+
+/* Модальне вікно */
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.2);
+
+    transition: opacity var(--anim-speed);
+}
+.backdrop.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 528px;
+    min-height: 581px;
+
+    background-color: #fff;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+        0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+.modal-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+    padding: 0;
+
+    background-color: var(--white-color);
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    cursor: pointer;
 }

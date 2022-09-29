@@ -60,10 +60,9 @@
             <section class="hero section overlay">
                 <div class="container">
                     <h1 class="title">Ефективні рішення для вашого бізнесу</h1>
-                    <button type="button" class="button">Замовити послугу</button>
+                    <button type="button" class="button" data-modal-open>Замовити послугу</button>
                 </div>
             </section>
-
             <!-- Переваги -->
             <section class="benefits section">
                 <div class="container">
@@ -125,28 +124,43 @@
                     <h2 class="title">Чим ми займаємося</h2>
                     <ul class="list services-example">
                         <li class="item">
-                            <img
-                                src="./images/codding.jpg"
-                                alt="Руки людини пишуть код"
-                                width="370"
-                                class="image"
-                            />
+                            <div class="wrapper">
+                                <img
+                                    src="./images/codding.jpg"
+                                    alt="Руки людини пишуть код"
+                                    width="370"
+                                    class="image"
+                                />
+                                <div class="overlay">
+                                    <p class="services-example-text">Десктопні додатки</p>
+                                </div>
+                            </div>
                         </li>
                         <li class="item">
-                            <img
-                                src="./images/model.jpg"
-                                alt="Руки людини тримають телефон перед ноутбуком"
-                                width="370"
-                                class="image"
-                            />
+                            <div class="wrapper">
+                                <img
+                                    src="./images/model.jpg"
+                                    alt="Руки людини тримають телефон перед ноутбуком"
+                                    width="370"
+                                    class="image"
+                                />
+                                <div class="overlay">
+                                    <p class="services-example-text">Мобільні додатки</p>
+                                </div>
+                            </div>
                         </li>
                         <li class="item">
-                            <img
-                                src="./images/design.jpg"
-                                alt="Руки людини тримають планшет на якому зображена кольорова палітра"
-                                width="370"
-                                class="image"
-                            />
+                            <div class="wrapper">
+                                <img
+                                    src="./images/design.jpg"
+                                    alt="Руки людини тримають планшет на якому зображена кольорова палітра"
+                                    width="370"
+                                    class="image"
+                                />
+                                <div class="overlay">
+                                    <p class="services-example-text">Дизайнерські рішення</p>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -403,7 +417,7 @@
                     </address>
                 </div>
                 <div class="join-in">
-                    <p class="join-in-title"><strong>приєднуйтесь</stron></p>
+                    <p class="join-in-title"><strong>приєднуйтесь</strong></p>
                     <ul class="join-in-list list">
                         <li class="item">
                             <a href="" class="link">
@@ -437,5 +451,16 @@
                 </div>
             </div>
         </footer>
+        <!-- Модальне вікно -->
+        <div class="backdrop is-hidden" data-modal>
+            <div class="modal">
+                <button class="modal-btn" data-modal-close>
+                    <svg class="icon" width="18" height="18">
+                        <use href="./images/icons.svg#icon-close"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <script src="./js/modal.js"></script>
     </body>
 </html>
